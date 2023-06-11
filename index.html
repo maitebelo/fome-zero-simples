@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fome Zero</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Delivery de Comida">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Carrinho</a></li>
+        <li><a href="#">Sobre Nós</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Delivery de Comida</h1>
+      <p>Faça seu pedido agora mesmo e receba em casa!</p>
+      <a href="#" class="button">Ver Cardápio</a>
+    </div>
+  </section>
+  <div id="app"></div>
+  <section class="historicopedidos">
+    <h2>Histórico de Pedidos</h2>
+    <div><button>Exibir Histórico de Pedidos</button></div>
+    <div><button class="btnproblema">Relatar um Problema</button></div>
+  </section>
+  <footer>
+    <p>Contato: contato@deliverydecomida.com.br</p>
+    <p>&copy; 2023 Delivery de Comida. Todos os direitos reservados.</p>
+  </footer>
+  <script type="text/babel">
+    const menu = [
+      {
+        id: 1,
+        name: 'Hamburguer',
+        description: 'Hamburguer artesanal',
+        price: 15.99,
+        image: 'https://images.unsplash.com/photo-1626082915404-d5143f14b43e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=MnwxfDB8MXxyYW5kb218MHx8YnVyZ2VyfHx8fHx8MTY4MDQxODg2MQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'
+      },
+      {
+        id: 2,
+        name: 'Pizza',
+        description: 'Pizza massa fina',
+        price: 29.99,
+        image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=MnwxfDB8MXxyYW5kb218MHx8cGl6emF8fHx8fHwxNjgwNDE5MjE3&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'
+      },
+      {
+        id: 3,
+        name: 'Sushi',
+        description: 'Sushi fresquinho',
+        price: 39.99,
+        image: 'https://images.unsplash.com/photo-1579551562441-049906a6e231?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=MnwxfDB8MXxyYW5kb218MHx8c3VzaGl8fHx8fHwxNjgwNDE5Mjky&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'
+      },
+      {
+        id: 4,
+        name: 'Carne',
+        description: 'Carne saborosa',
+        price: 35.99,
+        image: 'https://images.unsplash.com/photo-1628497622763-36456bb4d56b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2FybmV8fHx8fHwxNjgwNDE5Mzgx&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'
+      },
+      {
+        id: 5,
+        name: 'Bolo',
+        description: 'Bolo de chocolate fofinho',
+        price: 37.99,
+        image: 'https://images.unsplash.com/photo-1605807646983-377bc5a76493?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=MnwxfDB8MXxyYW5kb218MHx8Ym9sb3x8fHx8fDE2ODA0MTk0MjI&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'
+      },
+      {
+        id: 6,
+        name: 'Yakisoba',
+        description: 'Yakisoba quentinho',
+        price: 59.99,
+        image: 'https://images.unsplash.com/photo-1674516584254-935f30acb0b7?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&ixid=MnwxfDB8MXxyYW5kb218MHx8eWFraXNvYmF8fHx8fHwxNjgwNDE5NTAx&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'
+      }
+    ];
+
+    function App() {
+      return (
+        <div className="container">
+          <header>
+            <h1 classname="headerh1">Cardápio</h1>
+          </header>
+          <div className="menu">
+            {menu.map((item) => (
+              <div className="menu-item" key={item.id}>
+                <img src={item.image} alt={item.name} />
+                <h2 className="itemName">{item.name}</h2>
+                <p className="itemDescription">{item.description}</p>
+                <span>R$ {item.price.toFixed(2)}</span>
+                <a href="#" className="button">
+                  Adicionar ao carrinho
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, document.getElementById('app'));         
+  </script>
+</body>
+
+</html>
